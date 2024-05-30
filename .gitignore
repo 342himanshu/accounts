@@ -1,0 +1,21 @@
+# Google Jib cache files
+.jib-cache/
+
+
+*.class
+
+*.jar
+*.war
+*.ipr
+.idea/
+*.iml
+*.iws
+out/
+target/
+logs/
+*.classpath
+*.factorypath
+*.project
+.settings/
+
+
