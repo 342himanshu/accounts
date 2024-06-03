@@ -24,7 +24,7 @@ eureka:
     fetchRegistry: true
     registerWithEureka: true
     serviceUrl:
-      defaultZone: http://localhost:8070/eureka/
+      defaultZone: "http://localhost:8070/eureka/"
 info:
   app:
     name: "accounts"
@@ -36,7 +36,15 @@ management:
     web:
       exposure:
         include: "*"
+  health:
+    readiness-state:
+      enabled: true
+    liveness-state:
+      enabled: true
   endpoint:
+    health:
+      probes:
+        enabled: true
     shutdown:
       enabled: true
   info:
@@ -45,5 +53,11 @@ management:
 endpoints:
   shutdown:
     enabled: true
+
+logging:
+  level:
+    com:
+      eazybytes:
+        accounts: DEBUG
 
 #  docker run -p 3306:3306 --name accountsdb -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=accountsdb -d mysql:8.0;docker run -p 3308:3306 --name cardsdb -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=cardsdb -d mysql:8.0;docker run -p 3307:3306 --name loansdb -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=loansdb -d mysql:8.0
