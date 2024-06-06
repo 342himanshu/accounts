@@ -1,6 +1,10 @@
 server:
   port: 8080
 spring:
+  cloud:
+    openfeign:
+      circuitbreaker:
+        enabled: true
   application:
     name: "accounts"
   profiles:
@@ -59,5 +63,12 @@ logging:
     com:
       eazybytes:
         accounts: DEBUG
+resilience4j.circuitbreaker:
+  configs:
+    default:
+      slidingWindowSize: 10
+      permittedNumberOfCallsInHalfOpenState: 2
+      failureRateThreshold: 50
+      waitDurationInOpenState: 10000
 
 #  docker run -p 3306:3306 --name accountsdb -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=accountsdb -d mysql:8.0;docker run -p 3308:3306 --name cardsdb -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=cardsdb -d mysql:8.0;docker run -p 3307:3306 --name loansdb -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=loansdb -d mysql:8.0
